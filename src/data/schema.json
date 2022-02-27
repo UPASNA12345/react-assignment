@@ -1,0 +1,36 @@
+{
+    "data": [
+      {
+        "name": "title",
+        "label": "Title",
+        "component": "text",
+        "required": true
+      },
+      {
+        "name": "type",
+        "label": "Type",
+        "component": "select",
+        "required": true,
+        "options": [
+          {
+            "label": "Generic",
+            "value": "generic"
+          },
+          {
+            "label": "Holiday",
+            "value": "holiday"
+          }
+        ]
+      },
+      {
+        "name": "date",
+        "label": "Date",
+        "component": "range_picker"
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "component": "textarea"
+      }
+    ]
+  }

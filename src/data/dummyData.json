@@ -1,0 +1,47 @@
+{
+    "data": [
+      {
+        "id": 1,
+        "title": "Start Of The Year",
+        "type": "generic",
+        "startDate": "2022-01-01",
+        "endDate": "2022-12-01",
+        "description": "This is an event about the start of this year"
+      },
+      {
+        "id": 2,
+        "title": "Mediagenix Holiday",
+        "type": "holiday",
+        "startDate": "2022-04-04",
+        "endDate": "2022-04-05",
+        "description": "Celebrating Mediagenix"
+      },
+      {
+        "id": 3,
+        "title": "Test Event",
+        "type": "event",
+        "startDate": "2022-04-04",
+        "endDate": "2022-04-05",
+        "description": "Celebrating Mediagenix"
+      }, 
+      {
+        "id": 4,
+        "title": "Labor Day",
+        "type": "public",
+        "startDate": "2022-04-04",
+        "endDate": "2022-04-05",
+        "description": "Celebrating Mediagenix"
+      },
+     
+      {
+        "id": 5,
+        "title": "Film Festival",
+        "type": "event",
+        "startDate": "2022-04-04",
+        "endDate": "2022-04-05",
+        "description": "Celebrating Mediagenix"
+      }
+    ]
+  }
+
+
