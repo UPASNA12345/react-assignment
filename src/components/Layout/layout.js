@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Tabs, Button, Input, Result } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
-import { isEmpty } from 'lodash';
+import { isEmpty, cloneDeep } from 'lodash';
 import moment from 'moment';
 
 import TableComponent from '../Table/table';
@@ -18,49 +18,45 @@ function callback(key) {
 
 
 const LayoutComponent = () => {
-
-  const { Search } = Input;
   const [showModal, setShowModal] = useState(false);
   const [tableData, setTableData] = useState(null);
   const [formSchema, setFormSchema] = useState(null);
-  const [formdata, setFormData] = useState({})
-
+  const [formData, setFormData] = useState(null)
 
   useEffect(() => {
     setFormSchema(schemaData?.data);
-    setTableData(TableData.data);
+    setTableData(TableData?.data)
   }, [])
 
 
-  useEffect(() => {
+  const onSearch = (e) => {
+    const currValue = e;
+    let data = cloneDeep(tableData)
+    if (!isEmpty(currValue)) {
+      const filteredData = data?.filter(entry =>
+        entry.title.toLowerCase().includes(currValue.toLowerCase())
+      );
+      setTableData(filteredData);
+    }
+
+  }
+
+  const onSubmitHandler = (formValue) => {
     const id = tableData?.length + 1;
-    if (formdata && !isEmpty(formdata)) {
+    if (formValue && !isEmpty(formValue)) {
+      setFormData(formValue);
       const newData = {
-        ...formdata,
+        ...formValue,
         id: id,
-        startDate: moment(formdata?.date[0]).format('YYYY-MM-DD') || '',
-        endDate: moment(formdata?.date[1]).format('YYYY-MM-DD') || ''
+        startDate: moment(formValue?.date[0]).format('YYYY-MM-DD') || '',
+        endDate: moment(formValue?.date[1]).format('YYYY-MM-DD') || '',
 
       }
       setTableData((prevState) => [...prevState, newData]);
       setShowModal(false);
     }
-  }, [formdata])
-
-  const onSearch = () => {
-  //   <Input
-  //   placeholder="Search Name"
-  //   value={value}
-  //   onChange={e => {
-  //     const currValue = e.target.value;
-  //     setValue(currValue);
-  //     const filteredData = data.filter(entry =>
-  //       entry.name.includes(currValue)
-  //     );
-  //     setDataSource(filteredData);
-  //   }}
-  // />
   }
+
 
   const onCreateEventHandler = () => {
     setShowModal(true);
@@ -70,17 +66,17 @@ const LayoutComponent = () => {
 
   return (
     <>
-      <MainContext.Provider value={{ formSchema: formSchema, formdata: formdata, setFormData: setFormData, setShowModal: setShowModal }}>
+      <MainContext.Provider value={{ formSchema: formSchema, setShowModal: setShowModal, onSubmitHandler: onSubmitHandler }}>
         <Tabs defaultActiveKey="1" onChange={callback}>
           <TabPane tab="Events" key="1">
-            <div className='d-flex'>
+            <div className='d-flex m-bottom'>
               <div className='m-8'>
-                <Search
+                <Input.Search
                   placeholder="Search events"
                   allowClear
                   enterButton
                   size="large"
-                  onSearch={onSearch}
+                  onSearch={(e) => onSearch(e)}
                 />
               </div>
               <Button className="m-8" type="primary" htmlType="button" onClick={onCreateEventHandler}>
@@ -92,8 +88,8 @@ const LayoutComponent = () => {
           <TabPane tab="Templates" key="2">
             <Result
               icon={<SmileOutlined />}
-              title="Assignment submitted successfully!"
-              extra={<Button type="primary">Next</Button>}
+              title="React Assignment"
+              // extra={<Button type="primary">Submit</Button>}
               subTitle="Submitted by: Upasna Thakur"
 
             />,

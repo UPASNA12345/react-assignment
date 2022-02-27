@@ -1,11 +1,10 @@
 import React, {useContext} from 'react';
-import { Modal, Button } from 'antd';
+import { Modal} from 'antd';
 import Form from '../Form/form';
 import { MainContext } from '../../context/MainContext';
 
 function ModalComponent(props) {
   const {setShowModal } = useContext(MainContext);
-
   const { title, showModal} = props;
 
 

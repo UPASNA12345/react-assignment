@@ -23,5 +23,8 @@ margin-top: 90px;
   align-items: center;
 }
 .m-8{
-  margin: 8px 2px;
+  margin: 6px 2px;
+}
+.m-bottom{
+  margin-bottom: 8px;
 }

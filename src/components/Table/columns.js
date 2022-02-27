@@ -46,7 +46,7 @@ export const columns = [
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <MoreOutlined style={{color:'red'}}/>
+          <MoreOutlined style={{fontWeight:"bold", fontSize:"22px"}}/>
         </Space>
       ),
     },

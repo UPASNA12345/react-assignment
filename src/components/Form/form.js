@@ -7,11 +7,11 @@ import { MainContext } from '../../context/MainContext';
 
 
 const FormComponent = () => {
-  const { formSchema, setFormData, setShowModal } = useContext(MainContext);
+  const { formSchema, setShowModal, onSubmitHandler } = useContext(MainContext);
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    setFormData(values);
+    onSubmitHandler(values);
     form.resetFields();
   };
 
@@ -24,7 +24,7 @@ const FormComponent = () => {
 
   return (
     <div>
-      <Form form={form} name="event-form" onFinish={onFinish}
+      <Form form={form} name="event-form" onFinish = {onFinish}
         labelCol={{
           span: 4,
         }}
@@ -56,10 +56,9 @@ const FormComponent = () => {
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-
           </Space>
         </Form.Item>
-
+        
       </Form>
     </div>
   );
